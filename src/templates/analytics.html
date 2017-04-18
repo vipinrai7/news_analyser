@@ -1,0 +1,31 @@
+{% extends "frame.html" %}
+
+{% block content %}
+<div class="container">
+	<h1 style='display:flex;justify-content: center;'> Results. </h1>
+	<button style="display: flex; align-items: center; justify-content: center;" class='btn btn-primary' onclick="location.href='{{url}}'" type='button'>View Original Article.</button>
+	<div>
+		<h2> Sentiment: {{data['aggregate']['sentiment'] | capitalize}}</h2>
+   		<h2> Score {{data['aggregate']['score']}}</h2>
+   	</div>
+   	<h2> Negative feature words in the article</h2>
+   	<div>
+   		{% for words in data['negative']%}
+   			<h4> Topic: {{words['topic']}}</h4>
+   			<h6> Sentiment: {{words['sentiment']}},</h6>
+   			<h6> Original Text: {{words['original_text']}}</h6>
+   			<h6> Score : {{words['score']}} </h6>
+   		{% endfor %}
+   	</div>
+   	<h2> Positive feature words in the article</h2>
+   	<div>
+   	{% for words in data['positive']%}
+   			<h4> Topic: {{words['topic']}}</h4>
+   			<h6> Sentiment: {{words['sentiment']}},</h6>
+   			<h6> Original Text: {{words['original_text']}}</h6>
+   			<h6> Score : {{words['score']}} </h6>
+   		{% endfor %}
+
+   	</div>
+</div>
+{% endblock %}
